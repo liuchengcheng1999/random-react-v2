@@ -1,0 +1,18 @@
+@import "../helpers/helper.scss";
+.random-react-layout {
+  display: flex;
+  flex-direction: column;
+  &-content {
+    flex-grow: 1;
+  }
+  & & {
+    flex-grow: 1;
+    flex-direction: row;
+  }
+  &-hasAside {
+    flex-direction: row;
+    .random-react-layout {
+      flex-direction: column;
+    }
+  }
+}
