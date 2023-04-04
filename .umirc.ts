@@ -8,6 +8,9 @@ export default defineConfig({
   publicPath: '/random-react-v2/',
   exportStatic: {},
   dynamicImport: {},
+  history: {
+    type: 'hash',
+  },
   sass: {},
   navs: [
     null,
