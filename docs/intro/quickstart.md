@@ -15,7 +15,7 @@ group:
 然后在你的代码中写入下面的代码
 
 ```js
-import { Button, Tabs, Switch, Dialog } from 'random-ui';
+import Button from button;
 ```
 
 就可以使用我提供的组件了。
@@ -25,7 +25,7 @@ React 单文件组件
 
 ```js
 import React from 'react';
-import { Button } from 'random-ui';
+import Button from button;;
 const App = () => {
   return <Button/>;
 };
