@@ -12,11 +12,4 @@ export default defineConfig({
     type: 'hash',
   },
   sass: {},
-  navs: [
-    null,
-    {
-      title: 'Github',
-      path: 'https://github.com/liuchengcheng1999/random-react-v2'
-    }
-  ]
 });
