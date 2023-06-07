@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { ApplyPluginsType } from '/Users/sexbird/Documents/object/random-react-v2/node_modules/@umijs/runtime';
+import { ApplyPluginsType, dynamic } from '/Users/sexbird/Documents/project/random-react-v2/node_modules/@umijs/runtime';
 import * as umiExports from './umiExports';
 import { plugin } from './plugin';
 
@@ -9,14 +9,16 @@ export function getRoutes() {
   {
     "path": "/~demos/:uuid",
     "layout": false,
-    "wrappers": [require('../dumi/layout').default],
-    "component": ((props) => {
-        const React = require('react');
-        const { default: getDemoRenderArgs } = require('/Users/sexbird/Documents/object/random-react-v2/node_modules/@umijs/preset-dumi/lib/plugins/features/demo/getDemoRenderArgs');
-        const { default: Previewer } = require('dumi-theme-default/es/builtins/Previewer.js');
-        const { usePrefersColor, context } = require('dumi/theme');
+    "wrappers": [dynamic({ loader: () => import(/* webpackChunkName: 'wrappers' */'../dumi/layout')})],
+    "component": ((props) => dynamic({
+          loader: async () => {
+            const React = await import('react');
+            const { default: getDemoRenderArgs } = await import(/* webpackChunkName: 'dumi_demos' */ '/Users/sexbird/Documents/project/random-react-v2/node_modules/@umijs/preset-dumi/lib/plugins/features/demo/getDemoRenderArgs');
+            const { default: Previewer } = await import(/* webpackChunkName: 'dumi_demos' */ 'dumi-theme-default/es/builtins/Previewer.js');
+            const { usePrefersColor, context } = await import(/* webpackChunkName: 'dumi_demos' */ 'dumi/theme');
 
-        
+            return props => {
+              
       const { demos } = React.useContext(context);
       const [renderArgs, setRenderArgs] = React.useState([]);
 
@@ -45,7 +47,10 @@ export function getRoutes() {
           return `Demo ${props.match.params.uuid} not found :(`;
       }
     
-        })
+            }
+          },
+          loading: () => null,
+        }))()
   },
   {
     "path": "/_demos/:uuid",
@@ -55,15 +60,15 @@ export function getRoutes() {
     "__dumiRoot": true,
     "layout": false,
     "path": "/",
-    "wrappers": [require('../dumi/layout').default, require('/Users/sexbird/Documents/object/random-react-v2/node_modules/dumi-theme-default/es/layout.js').default],
+    "wrappers": [dynamic({ loader: () => import(/* webpackChunkName: 'wrappers' */'../dumi/layout')}), dynamic({ loader: () => import(/* webpackChunkName: 'wrappers' */'/Users/sexbird/Documents/project/random-react-v2/node_modules/dumi-theme-default/es/layout.js')})],
     "routes": [
       {
         "path": "/",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/index.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__index.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/index.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/index.md",
-          "updatedTime": 1680233905357,
+          "updatedTime": 1680576006000,
           "hero": {
             "title": "random-ui",
             "desc": "<div class=\"markdown\"><p>Random-UI 一个简单好用的UI组件库</p></div>",
@@ -99,11 +104,11 @@ export function getRoutes() {
       },
       {
         "path": "/component/button",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/component/button.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__component__button.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/component/button.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/component/button.md",
-          "updatedTime": 1680080924960,
+          "updatedTime": 1680576006000,
           "title": "Button",
           "toc": false,
           "order": 2,
@@ -149,11 +154,11 @@ export function getRoutes() {
       },
       {
         "path": "/component/components",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/component/components.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__component__components.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/component/components.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/component/components.md",
-          "updatedTime": 1680079982306,
+          "updatedTime": 1680582289000,
           "title": "组件总览",
           "toc": false,
           "order": 1,
@@ -181,6 +186,16 @@ export function getRoutes() {
               "depth": 3,
               "value": "布局",
               "heading": "布局"
+            },
+            {
+              "depth": 3,
+              "value": "数据录入",
+              "heading": "数据录入"
+            },
+            {
+              "depth": 3,
+              "value": "反馈",
+              "heading": "反馈"
             }
           ]
         },
@@ -188,11 +203,11 @@ export function getRoutes() {
       },
       {
         "path": "/component/dialog",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/component/dialog.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__component__dialog.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/component/dialog.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/component/dialog.md",
-          "updatedTime": 1680151481205,
+          "updatedTime": 1680576006000,
           "title": "Dialog",
           "toc": false,
           "order": 4,
@@ -223,11 +238,11 @@ export function getRoutes() {
       },
       {
         "path": "/component/input1",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/component/input1.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__component__input1.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/component/input1.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/component/input1.md",
-          "updatedTime": 1680232760209,
+          "updatedTime": 1680576006000,
           "title": "Input 1",
           "toc": false,
           "order": 5,
@@ -273,11 +288,11 @@ export function getRoutes() {
       },
       {
         "path": "/component/input2",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/component/input2.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__component__input2.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/component/input2.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/component/input2.md",
-          "updatedTime": 1680232769219,
+          "updatedTime": 1680576006000,
           "title": "Input 2",
           "toc": false,
           "order": 6,
@@ -323,11 +338,11 @@ export function getRoutes() {
       },
       {
         "path": "/component/layout",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/component/layout.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__component__layout.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/component/layout.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/component/layout.md",
-          "updatedTime": 1680080735625,
+          "updatedTime": 1680576006000,
           "title": "Layout",
           "toc": false,
           "order": 3,
@@ -368,11 +383,11 @@ export function getRoutes() {
       },
       {
         "path": "/intro/install",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/intro/install.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__intro__install.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/intro/install.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/intro/install.md",
-          "updatedTime": 1680238185410,
+          "updatedTime": 1680576006000,
           "title": "安装",
           "order": 2,
           "path": "/intro",
@@ -396,11 +411,11 @@ export function getRoutes() {
       },
       {
         "path": "/intro/introduce",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/intro/introduce.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__intro__introduce.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/intro/introduce.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/intro/introduce.md",
-          "updatedTime": 1680080018221,
+          "updatedTime": 1680578914000,
           "title": "介绍",
           "order": 1,
           "nav": {
@@ -424,11 +439,11 @@ export function getRoutes() {
       },
       {
         "path": "/intro/quickstart",
-        "component": require('/Users/sexbird/Documents/object/random-react-v2/docs/intro/quickstart.md').default,
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__intro__quickstart.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/intro/quickstart.md')}),
         "exact": true,
         "meta": {
           "filePath": "docs/intro/quickstart.md",
-          "updatedTime": 1680228965326,
+          "updatedTime": 1680582289000,
           "title": "快速开始",
           "order": 3,
           "nav": {

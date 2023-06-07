@@ -1,8 +1,8 @@
 // @ts-nocheck
-import { createHashHistory, History } from '/Users/sexbird/Documents/object/random-react-v2/node_modules/@umijs/runtime';
+import { createHashHistory, History } from '/Users/sexbird/Documents/project/random-react-v2/node_modules/@umijs/runtime';
 
 let options = {
-  "basename": "/"
+  "basename": "/random-react-v2"
 };
 if ((<any>window).routerBase) {
   options.basename = (<any>window).routerBase;
