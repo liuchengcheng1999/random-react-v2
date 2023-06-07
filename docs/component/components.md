@@ -1,10 +1,10 @@
 ---
 title: 组件总览
 toc: false
-order: 1
 nav:
   title: 组件库
   path: /component
+  order: 2
 ---
 
 # 组件总览

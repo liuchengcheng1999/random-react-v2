@@ -63,6 +63,23 @@ export function getRoutes() {
     "wrappers": [dynamic({ loader: () => import(/* webpackChunkName: 'wrappers' */'../dumi/layout')}), dynamic({ loader: () => import(/* webpackChunkName: 'wrappers' */'/Users/sexbird/Documents/project/random-react-v2/node_modules/dumi-theme-default/es/layout.js')})],
     "routes": [
       {
+        "path": "/github",
+        "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__github.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/github.md')}),
+        "exact": true,
+        "meta": {
+          "filePath": "docs/github.md",
+          "updatedTime": 1686115590500,
+          "nav": {
+            "order": 3,
+            "path": "/github",
+            "title": "Github"
+          },
+          "slugs": [],
+          "title": "Github"
+        },
+        "title": "Github - Random-UI"
+      },
+      {
         "path": "/",
         "component": dynamic({ loader: () => import(/* webpackChunkName: 'docs__index.md' */'/Users/sexbird/Documents/project/random-react-v2/docs/index.md')}),
         "exact": true,
@@ -161,10 +178,10 @@ export function getRoutes() {
           "updatedTime": 1680582289000,
           "title": "组件总览",
           "toc": false,
-          "order": 1,
           "nav": {
             "title": "组件库",
-            "path": "/component"
+            "path": "/component",
+            "order": 2
           },
           "slugs": [
             {
@@ -474,7 +491,7 @@ export function getRoutes() {
         "path": "/component",
         "meta": {},
         "exact": true,
-        "redirect": "/component/components"
+        "redirect": "/component/button"
       },
       {
         "path": "/intro/",
